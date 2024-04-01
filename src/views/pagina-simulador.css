@@ -1,0 +1,87 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing:unset;
+    font-family: "Poppins", sans-serif;
+}
+
+
+.topo{
+    background-color: #EEA503;
+}
+header{
+    height: 10vh;
+}
+header div {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+main{
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    
+}
+.titulo{
+    color: white;
+    font-size: 30px;
+}
+a {
+    text-decoration: none;
+}
+.logo {
+    width: 55px;
+    height: 55px;
+}
+
+.nome{
+    width: 54vw;
+}
+.troca_cor{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: aquamarine;
+    height: 7vh;
+}
+
+.troca_cor img{
+    width: 32px;
+    height: 32px;
+}
+
+.circuito{
+    background-color: blue;
+    width: 80%;
+    overflow: hidden;
+}
+
+.componentes{
+    width: 20%;
+    background-color:blueviolet;
+}
+
+.simulacao{
+    width: max-content;
+    height: max-content;
+    position: absolute;
+    top: 7vh;
+    width: 100%;
+    height: 83vh;
+}
+
+canvas {
+    height: 100%;
+    width: 100%;
+    display: block;
+}
