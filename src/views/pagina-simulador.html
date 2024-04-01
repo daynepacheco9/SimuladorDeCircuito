@@ -11,6 +11,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./pagina-simulador.css" />
+    <script src="pagina-simulador.js" defer></script>
 </head>
 
 <body>
@@ -27,33 +28,43 @@
         </div>
     </header>
     <main class="d-flex justify-content-center align-items-center m-0">
-        <div class="troca_cor">
-            <img src="../../public/img/icons8-lua-brilhante-96.png" alt="">
+        <div class="funcoes d-flex justify-content-between-center w-100 m-0 p-0 col">
+            <div class="rotate">
+                <img id="rotate-left" src="../../public/img/icons8-gire-para-a-esquerda-96.png" alt="">
+                <img id="rotate-right"src="../../public/img/icons8-gire-para-a-direita-96.png" alt="">
+            </div>
+            <div class="troca-cor">
+                <img id="theme-color" src="../../public/img/icons8-lua-brilhante-96.png" alt="">
+            </div>
         </div>
         <div class="simulacao d-flex justify-content-between-center w-100 m-0 p-0">
-            <div class="componentes">
+            <div class="componentes ">
                 <ul>
                     <li>
-                        <img src="/public/img/pixil-frame-0.png" alt="">
-
+                        <img id="resistor" src="/public/img/resistencia.png" alt="">
+                        <p>Resistor</p>
                     </li>
                     <li>
-                        <img src="" alt="">
+                        <img id="fonte" src="/public/img/fonte.png" alt="">
+                        <p>Fonte</p>
                     </li>
                     <li>
-                        <img src="" alt="">
+                        <img id="capacitor" src="/public/img/capacitor.png" alt="">
+                        <p>Capacitor</p>
                     </li>
                     <li>
-                        <img src="" alt="">
+                        <img id="diodo" src="/public/img/diodo.png" alt="">
+                        <p>Diodo</p>
                     </li>
                     <li>
-                        <img src="" alt="">
+                        <img id="led" src="/public/img/led.png" alt="">
+                        <p>LED</p>
                     </li>
                 </ul>
             </div>
             <div class="circuito">
                 <canvas id="canvas">
-
+                    
                 </canvas>
             </div>
         </div>

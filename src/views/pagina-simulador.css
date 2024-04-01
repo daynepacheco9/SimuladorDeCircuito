@@ -44,32 +44,76 @@ a {
 .nome{
     width: 54vw;
 }
-.troca_cor{
+
+.funcoes{
+    width: 100%;
+    height: 7vh;
+    background-color: #B1D8DD;
+}
+
+.troca-cor{
     position: absolute;
     top: 0;
-    width: 100%;
+    right: 0;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background-color: aquamarine;
+    width: 50%;
+    height: 7vh;
+    background-color: #B1D8DD;
+    margin: 0;
+}
+
+.rotate{
+    position: absolute;
+    top: 0;
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #B1D8DD;
     height: 7vh;
 }
 
-.troca_cor img{
+.rotate img{
     width: 32px;
     height: 32px;
+    margin-right: 5px;
+    margin-left: 10px;
+}
+.troca-cor img{
+    width: 32px;
+    height: 32px;
+    margin-right: 5px;
 }
 
 .circuito{
-    background-color: blue;
-    width: 80%;
+    background-color: #F2F2F2;
+    width: 90%;
     overflow: hidden;
 }
 
 .componentes{
-    width: 20%;
-    background-color:blueviolet;
+    width: 10%;
+    background-color: #D9D9D9;
 }
+
+.componentes ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    justify-content: center; 
+    align-items: center;
+}
+.componentes ul li{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+}
+
+
 
 .simulacao{
     width: max-content;
