@@ -2,8 +2,8 @@
 const Sequelize = require('sequelize');
 const database = require('../config/db');
 // Criando a tabela Sala
-const usuario = database.define('Usuario', {
-    IDUsuario: {
+const componente = database.define('Componente', {
+    IDComp: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
@@ -13,22 +13,18 @@ const usuario = database.define('Usuario', {
         type: Sequelize.STRING(50),
         allowNull: false
     },
-    Email: {
+    Valor: {
         type: Sequelize.STRING(50),
         allowNull: false
     },
-    Telefone: {
-        type: Sequelize.STRING(20),
-        allowNull: false
-    },
-    Acesso: {
-        type: Sequelize.STRING(50),
-        allowNull: false
-    },
-    Senha: {
+    Medida: {
         type: Sequelize.STRING(12),
         allowNull: false
-    }
+    },
+    Foto: {
+        type: Sequelize.STRING(50),
+        allowNull: false
+    },
 });
 // Exportando essa tabela
-module.exports = usuario;
+module.exports = componente;

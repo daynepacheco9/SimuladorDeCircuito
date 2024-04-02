@@ -36,15 +36,22 @@
         <h4 class=" titulo_form mx-auto mb-0">Componente</h4>
         <form class="form" action="" method="post">
           <div class="d-flex flex-column ">
-            <label for="senha">Nome:</label>
-            <input class="rounded-2"  id="senha" type="text" />
+            <label for="Nome">Nome:</label>
+            <input class="rounded-2" name="nome" id="Nome" type="text" />
+          </div>
+          <div class="d-flex flex-column ">
+            <label for="Valor">Valor:</label>
+            <input class="rounded-2" name="valor" id="Valor" type="number" />
+          </div>
+          <div class="d-flex flex-column ">
+            <label for="Medida">Medida:</label>
+            <input class="rounded-2" name="medida" id="Medida" type="text" />
           </div>
           <div class=" imagem-componente d-flex flex-column ">
             <label for="imagem-comp">Insira a imagem:</label>
             <img src="img/icons8-imagem-96.png" id="imgFoto" alt="imagem">
             <input type="file" id="flImage" name="foto" accept="image/*">
           </div>
-          
           <div class="d-flex flex-column">
             <button class="cadastrar btn btn-light ">Enter</button>
           </div>
@@ -53,7 +60,7 @@
     </main>
     <footer class="navbar">
       <div class="container-fluid d-flex justify-content-center align-items-center ">
-        <a class="navbar-brand" href="#">by Jessica and Dayne</a>
+        <a class="navbar-brand" href="/pagina-simulador">by Jessica and Dayne</a>
       </div>
     </footer>
   </body>

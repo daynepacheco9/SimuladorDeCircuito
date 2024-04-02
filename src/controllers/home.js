@@ -1,4 +1,5 @@
-
+const usuario = require('../model/usuario');
+const componente = require('../model/componente');
 
 
 module.exports = {
@@ -17,11 +18,34 @@ module.exports = {
     async pagPrincipalGet(req, res){
         res.render('../views/pagina-principal');
     },
-    async pagSenhaGet(req, res){
-        res.render('../views/pagina-senha');
-    },
     async pagSimuladorGet(req, res){
         res.render('../views/pagina-simulador');
-    }
+    },
+    async usuarioInsert(req, res)
+    {
+        const dados = req.body;
+
+        await usuario.create({
+            Nome: dados.nome,
+            Email: dados.email,
+            Telefone: dados.telefone,
+            Acesso: dados.acesso,
+            Senha: dados.senha
+        });
+        res.redirect('/pagina-login');
+    },
+    async componentesInsert(req, res){
+
+        const dados = req.body;
+        
+        await componentes.create({
+            Nome: dados.nome,
+            Valor: dados.valor,
+            Medida: dados.medida,
+            Foto: dados.foto
+        });
+        // Redirecionar para a página principal
+        res.redirect('/');
+    },
     
 }

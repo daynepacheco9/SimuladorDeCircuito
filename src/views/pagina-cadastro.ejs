@@ -11,6 +11,7 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/pagina-cadastro.css" />
+  <script defer src="js/pagina-cadastro.js"></script>
 </head>
 
 <body>
@@ -34,29 +35,37 @@
     </div>
     <div class=" formulario rounded-4">
       <h4 class=" titulo_form mx-auto mb-0">Cadastro</h4>
-      <form class="form" action="">
-        <div class="d-flex flex-column ">
+      <form class="form" id="form" action="">
+        <div class="d-flex flex-column">
           <label for="Nome">Nome:</label>
-          <input class="rounded-2" id="Nome" type="text" />
+          <input class="rounded-2" name="nome" id="Nome" type="text" />
         </div>
         <div class="d-flex flex-column">
           <label for="email">E-mail:</label>
-          <input class="rounded-2" id="email" type="email" />
+          <input class="rounded-2" name="email" id="email" type="email" />
         </div>
         <div class="d-flex flex-column">
           <label for="telefone">Telefone</label>
-          <input class="rounded-2" id="telefone" type="tel" />
+          <input class="rounded-2" name="telefone" id="telefone" type="tel" />
+        </div>
+        <div class="mb-3 d-flex flex-column">
+          <label for="Acesso" class="form-label">Acesso</label>
+          <select name="acesso" class="form-select-sm mb-3" aria-label="Default select example" required>
+              <option selected disabled hidden></option>
+              <option value="0">0</option>
+              <option value="1">1</option>
+          </select>
         </div>
         <div class="d-flex flex-column ">
           <label for="senha">Senha:</label>
-          <input class="rounded-2" id="senha" type="password" />
+          <input class="rounded-2" name="senha" id="senha" type="password" />
         </div>
         <div class="d-flex flex-column">
           <label for="csenha">Confirme a senha:</label>
           <input class="rounded-2" id="csenha" type="password" />
         </div>
         <div class="d-flex flex-column">
-          <button class="cadastrar btn btn-light">Enter</button>
+          <button type="submit" id="botaosubmit" class="cadastrar btn btn-light" disabled>Enter</button>
         </div>
       </form>
     </div>
