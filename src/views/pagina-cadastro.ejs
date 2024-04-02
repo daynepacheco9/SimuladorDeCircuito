@@ -29,7 +29,7 @@
         <nav
           class="my-2 my-md-9 mr-md-3 d-flex flex-row align-items-center justify-content-center"
         >
-          <a class="p-2 text-light" href="">Entrar</a>
+          <a class="p-2 text-light" href="/pagina-login">Entrar</a>
           <a class="p-2 text-light" href="">Cadastro</a>
         </nav>
       </div>
@@ -53,16 +53,14 @@
             <label for="telefone">Telefone</label>
             <input class="rounded-2" id="telefone" type="tel" />
           </div>
-          <!-- <div class="dropdown d-flex flex-column">
-                    <label for="Sala">Sala:</label>
-                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    </button>
-                    <ul class="dropdown-menu">
-                        <% salas.forEach( x => {%>
-                            <li><a class="dropdown-item" href="#"><%= x.Nome %></a></li>
-                        <% }) %>
-                    </ul>
-                </div> -->
+          <div class="d-flex flex-column ">
+            <label for="senha">Senha:</label>
+            <input class="rounded-2"  id="senha" type="password" />
+          </div>
+          <div class="d-flex flex-column">
+            <label for="csenha">Confirme a senha:</label>
+            <input class="rounded-2"  id="csenha" type="password" />
+          </div>
           <div class="d-flex flex-column">
             <button class="cadastrar btn btn-light ">Enter</button>
           </div>
