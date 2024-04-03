@@ -15,7 +15,8 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="css/pagina-cad-comp.css" />
+    <link rel="stylesheet" href="css/pagina-cad-comp.css"/>
+    <script defer src="js/pagina-cad-comp.js"></script>
   </head>
   <body>
     <header>
@@ -37,20 +38,20 @@
         <form class="form" action="/pagina-cad-comp" method="post" enctype="multipart/form-data">
           <div class="d-flex flex-column ">
             <label for="Nome">Nome:</label>
-            <input class="rounded-2" name="nome" id="Nome" type="text" />
+            <input class="rounded-2" name="nome" id="Nome" type="text" required/>
           </div>
           <div class="d-flex flex-column ">
             <label for="Valor">Valor:</label>
-            <input class="rounded-2" name="valor" id="Valor" type="number" />
+            <input class="rounded-2" name="valor" id="Valor" type="number" required/>
           </div>
           <div class="d-flex flex-column ">
             <label for="Medida">Medida:</label>
-            <input class="rounded-2" name="medida" id="Medida" type="text" />
+            <input class="rounded-2" name="medida" id="Medida" type="text" required/>
           </div>
           <div class=" imagem-componente d-flex flex-column ">
             <label for="imagem-comp">Insira a imagem:</label>
             <img src="img/icons8-imagem-96.png" id="imgFoto" alt="imagem">
-            <input type="file" id="flImage" name="foto" accept="image/*">
+            <input type="file" id="flImage" name="foto" accept="image/*" style="display: none;" required>
           </div>
           <div class="d-flex flex-column">
             <button class="cadastrar btn btn-light ">Enter</button>
