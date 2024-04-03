@@ -35,18 +35,18 @@
     </div>
     <div class=" formulario rounded-4">
       <h4 class=" titulo_form mx-auto mb-0">Cadastro</h4>
-      <form class="form" id="form" action="">
+      <form class="form" id="form" action="/pagina-cadastro" method="post">
         <div class="d-flex flex-column">
           <label for="Nome">Nome:</label>
-          <input class="rounded-2" name="nome" id="Nome" type="text" />
+          <input class="rounded-2" name="nome" id="Nome" type="text" required/>
         </div>
         <div class="d-flex flex-column">
           <label for="email">E-mail:</label>
-          <input class="rounded-2" name="email" id="email" type="email" />
+          <input class="rounded-2" name="email" id="email" type="email" required/>
         </div>
         <div class="d-flex flex-column">
           <label for="telefone">Telefone</label>
-          <input class="rounded-2" name="telefone" id="telefone" type="tel" />
+          <input class="rounded-2" name="telefone" id="telefone" type="tel" required/>
         </div>
         <div class="mb-3 d-flex flex-column">
           <label for="Acesso" class="form-label">Acesso</label>
@@ -58,14 +58,14 @@
         </div>
         <div class="d-flex flex-column ">
           <label for="senha">Senha:</label>
-          <input class="rounded-2" name="senha" id="senha" type="password" />
+          <input class="rounded-2" name="senha" id="senha" type="password" required/>
         </div>
         <div class="d-flex flex-column">
           <label for="csenha">Confirme a senha:</label>
-          <input class="rounded-2" id="csenha" type="password" />
+          <input class="rounded-2" id="csenha" type="password" required/>
         </div>
         <div class="d-flex flex-column">
-          <button type="submit" id="botaosubmit" class="cadastrar btn btn-light" disabled>Enter</button>
+          <button type="submit" id="botaosubmit" class="cadastrar btn btn-light">Enter</button>
         </div>
       </form>
     </div>

@@ -2,7 +2,7 @@
 const Sequelize = require('sequelize');
 const database = require('../config/db');
 // Criando a tabela Sala
-const usuario = database.define('Usuario', {
+const usuario = database.define('Usuarios', {
     IDUsuario: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
