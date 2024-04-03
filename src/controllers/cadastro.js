@@ -40,5 +40,13 @@ module.exports = {
         });
         // Redirecionar para a página principal
         res.redirect('/');
+    },
+    async usuarioAlter(req, res)
+    {
+        const dados = req.body;
+
+        await usuario.alter({
+            Senha: dados.senha
+        })
     }
 }
