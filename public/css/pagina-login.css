@@ -67,7 +67,12 @@ a {
     background-color: #EEA503;
     border: none;
     width: 30%;
+    height: 4vh;
+    display: flex;
+    justify-content: center;
     align-self: flex-end;
+    color: #f2f2f2;
+
 }
 .btn:hover{
     background-color: #f3e9c1;

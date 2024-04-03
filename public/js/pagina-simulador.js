@@ -55,27 +55,31 @@
 // canvas.addEventListener('mousemove', draw);
 
 
-var displayWidth = 1280;
-var displayHeight = 720;
-var canvas = document.getElementById("canvas");
-var scale = 2;
+let displayWidth = 1280;
+let displayHeight = 720;
+let canvas = document.getElementById("canvas");
+let scale = 2;
 canvas.style.width = displayWidth + 'px';
 canvas.style.height = displayHeight + 'px';
 canvas.width = displayWidth * scale;
 canvas.height = displayHeight * scale;
-var ctx = canvas.getContext("2d");
+let ctx = canvas.getContext("2d");
 
-var drawing = false;
-var mousePos = { x:0, y:0 };
-var lastPos = mousePos;
+let drawing = false;
+let mousePos = { x:0, y:0 };
+let lastPos = mousePos;
 canvas.addEventListener("mousemove", function (e) {
   mousePos = getMousePos(canvas, e);
     drawing = true;
 }, false);
 
+canvas.addEventListener("mouseup", function (e) {
+  drawing = false;
+}, false);
+
 // Get the position of the mouse relative to the canvas
 function getMousePos(canvasDom, mouseEvent) {
-  var rect = canvasDom.getBoundingClientRect();
+  let rect = canvasDom.getBoundingClientRect();
   return {
     x: (mouseEvent.clientX - rect.left) * scale,
     y: (mouseEvent.clientY - rect.top) * scale
@@ -97,13 +101,15 @@ window.requestAnimFrame = (function (callback) {
 // Draw to the canvas
 function renderCanvas() {
   if (drawing) {
-    ctx.fillStyle = "#FFFFFF";
-    ctx.fillRect(mousePos.x, mousePos.y, 25, 25);
+    ctx.strokeStyle = "#000000"; // Cor da linha
+    ctx.lineWidth   = 5; // Largura da linha
+    ctx.lineCap = "round"; // Estilo das extremidades da linha
+    ctx.beginPath();
+    ctx.moveTo(lastPos.x, lastPos.y); // Move para a última posição do mouse
+    ctx.lineTo(mousePos.x, mousePos.y); // Desenha uma linha até a posição atual do mouse
+    ctx.stroke(); // Aplica o desenho
 
-    ctx.strokeStyle = "#000000";
-    ctx.lineWidth   = 1;
-    ctx.strokeRect(mousePos.x, mousePos.y, 25, 25);
-    lastPos = mousePos;
+    lastPos = mousePos; // Atualiza a última posição do mouse
   }
 }
 
