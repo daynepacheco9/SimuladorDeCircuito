@@ -21,6 +21,9 @@ module.exports = {
     async pagSimuladorGet(req, res){
         res.render('../views/pagina-simulador');
     },
+    async pagSimulaADMGet(req, res){
+        res.render('../views/pagina-simula-adm');
+    },
     async usuarioInsert(req, res)
     {
         const dados = req.body;
