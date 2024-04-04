@@ -33,19 +33,19 @@
     </div>
     <div class=" formulario rounded-4">
       <h4 class=" titulo_form mx-auto mb-0">Excluir usuário</h4>
-      <form class="form" action="">
+      <form class="form" id="form" action="/pagina-excluir-user" method="post">
         <div class="d-flex flex-column ">
-          <label for="username">Nome:</label>
-          <input class="rounded-2" id="username" name="username" type="text" required/>
+          <label for="Nome">Nome:</label>
+          <input class="rounded-2" id=" Nome" name="nome" type="text" required/>
         </div>
         <div class="d-flex flex-column">
           <label for="email">E-mail:</label>
-          <input class="rounded-2" id="email" type="email" required/>
+          <input class="rounded-2" id="email" name="email" type="email" required/>
         </div>
         <div class="d-flex flex-column">
-          <a type="submit" class="cadastrar rounded-2" href="/pagina-simulador"> 
+          <button type="submit" class="cadastrar rounded-2" >
              Enter
-          </a>
+          </button>
         </div>
       </form>
     </div>
