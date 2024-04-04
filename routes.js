@@ -23,6 +23,6 @@ route.get('/pagina-simula-adm', home.pagSimulaADMGet);
 
 route.post('/pagina-cad-comp', multer(config).single('foto'), cadastro.componenteInsert);
 route.post('/pagina-cadastro', cadastro.usuarioInsert);
-route.post('/pagina-esqueci', cadastro.usuarioAlter);
+route.post('/pagina-esqueci', cadastro.usuarioUpdate);
 
 module.exports = route;
