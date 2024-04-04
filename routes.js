@@ -26,5 +26,6 @@ route.post('/pagina-cad-comp', multer(config).single('foto'), cadastro.component
 route.post('/pagina-cadastro', cadastro.usuarioInsert);
 route.post('/pagina-esqueci', cadastro.usuarioUpdate);
 route.post('/pagina-excluir-user', cadastro.usuarioDelete);
+route.post('/pagina-login', cadastro.usuariologin);
 
 module.exports = route;

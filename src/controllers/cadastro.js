@@ -125,5 +125,33 @@ module.exports = {
             // Tratar o erro adequadamente
             res.status(500).send('Erro ao buscar componentes.');
         }
+    },
+    async usuariologin(req, res) {
+        const dados = req.body;
+        const email = dados.email;
+        const senha = dados.senha;
+
+        console.log('entrou');
+
+        try {
+            // Verificar se o usuário com o e-mail fornecido existe no banco de dados
+            const user = await usuario.findOne({ where: { Email: email } });
+            console.log('ele viu');
+
+            if (!user) {
+                return res.status(404).send("Usuário não encontrado");
+            }
+
+            // Verificar se a senha fornecida corresponde à senha armazenada no banco de dados
+            if (user.Senha !== senha) {
+                return res.status(401).send("Senha incorreta");
+            }
+            console.log('verificou');
+            // Se o usuário e a senha estiverem corretos, redirecione para a página principal ou página de perfil, etc.
+            res.redirect('/');
+        } catch (error) {
+            console.error("Erro ao fazer login:", error);
+        }
     }
+
 }
