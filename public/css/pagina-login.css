@@ -19,9 +19,7 @@
 
 .nomes {
     color: var(--grey-1);
-}
-.nomes:hover{
-    color: var(--grey-1);
+    font-size: var(--bs-navbar-brand-font-size);
 }
 
 *{

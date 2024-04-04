@@ -19,10 +19,9 @@
 
 .nomes {
     color: var(--grey-1);
+    font-size: var(--bs-navbar-brand-font-size);
 }
-.nomes:hover{
-    color: var(--grey-1);
-}
+
 
 *{
     margin: 0;
