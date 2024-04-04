@@ -27,6 +27,9 @@ module.exports = {
     async pagEsqueci(req, res){
         res.render('../views/pagina-esqueci')
     },
+    async pagExcluirUser(req, res){
+        res.render('../views/pagina-excluir-user')
+    },
     async usuarioInsert(req, res)
     {
         const dados = req.body;

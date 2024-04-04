@@ -20,6 +20,9 @@
 .nomes {
     color: var(--grey-1);
 }
+.nomes:hover{
+    color: var(--grey-1);
+}
 
 *{
     margin: 0;
