@@ -45,7 +45,7 @@ header div {
     height: 100%;
 }
 main{
-    background-color: #f2f2f2;
+    background-color: var(--grey-2);
     display: flex;
     flex-direction: column;
     position: relative;
