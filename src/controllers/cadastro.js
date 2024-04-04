@@ -41,12 +41,27 @@ module.exports = {
         // Redirecionar para a página principal
         res.redirect('/');
     },
-    async usuarioAlter(req, res)
+    async usuarioUpdate(req, res)
     {
         const dados = req.body;
+        const email = dados.email;
 
-        await usuario.alter({
-            Senha: dados.senha
-        })
+        try{
+            const user = await usuario.findOne({
+                where: {
+                    email: email
+                }
+            });
+
+            if (!user) {
+                return "Usuário não encontrado";
+            }
+
+            user.senha = dados.senha;
+            await user.save();
+        }
+        catch(error){
+            console.error("Erro ao atualizar a senha!", error);
+        }
     }
 }
