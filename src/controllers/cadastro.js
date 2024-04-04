@@ -47,21 +47,22 @@ module.exports = {
         const email = dados.email;
 
         try{
-            const user = await usuario.findOne({
-                where: {
-                    email: email
-                }
-            });
+            const user = await usuario.findOne({where: { Email: email}});
 
+            console.log("FOIIII");
             if (!user) {
                 return "Usuário não encontrado";
             }
 
-            user.senha = dados.senha;
+            user.Senha = dados.senha;
+
             await user.save();
+
+            res.redirect('/');
         }
         catch(error){
             console.error("Erro ao atualizar a senha!", error);
         }
+        console.log("AAAAAAAAAAAAAAAA");
     }
 }
