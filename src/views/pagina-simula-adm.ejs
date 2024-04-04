@@ -43,26 +43,14 @@
         <div class="simulacao d-flex justify-content-between-center w-100 m-0 p-0">
             <div class="componentes ">
                 <ul>
-                    <li>
-                        <img id="resistor" src="img/resistencia.png" alt="">
-                        <p>Resistor</p>
-                    </li>
-                    <li>
-                        <img id="fonte" src="img/fonte.png" alt="">
-                        <p>Fonte</p>
-                    </li>
-                    <li>
-                        <img id="capacitor" src="img/capacitor.png" alt="">
-                        <p>Capacitor</p>
-                    </li>
-                    <li>
-                        <img id="diodo" src="img/diodo.png" alt="">
-                        <p>Diodo</p>
-                    </li>
-                    <li>
-                        <img id="led" src="img/led.png" alt="">
-                        <p>LED</p>
-                    </li>
+                    <% for (let i = 0; i < componentes.length; i++) { %>
+                        <li>
+                            <img src="img/<%= componentes[i].Foto %>" class="card-img-top rounded-circle" style="max-width: 80px; height: auto;" alt="Foto aluno">
+                            <%= componentes[i].Nome %>
+                            - <%= componentes[i].Valor %>
+                            <%= componentes[i].Medida %> 
+                        </li>
+                    <% } %>
                 </ul>
             </div>
             <div class="circuito ">

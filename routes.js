@@ -18,9 +18,9 @@ route.get('/pagina-cadastro', home.pagCadastroGet);
 route.get('/pagina-esqueci', home.pagEsqueci);
 route.get('/pagina-login', home.pagLoginGet);
 route.get('/pagina-principal', home.pagPrincipalGet);
-route.get('/pagina-simulador', home.pagSimuladorGet);
-route.get('/pagina-simula-adm', home.pagSimulaADMGet);
 route.get('/pagina-excluir-user', home.pagExcluirUser);
+route.get('/pagina-simulador', cadastro.componente);
+route.get('/pagina-simula-adm', cadastro.componente_adm);
 
 route.post('/pagina-cad-comp', multer(config).single('foto'), cadastro.componenteInsert);
 route.post('/pagina-cadastro', cadastro.usuarioInsert);

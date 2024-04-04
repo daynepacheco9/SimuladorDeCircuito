@@ -18,12 +18,6 @@ module.exports = {
     async pagPrincipalGet(req, res){
         res.render('../views/pagina-principal');
     },
-    async pagSimuladorGet(req, res){
-        res.render('../views/pagina-simulador');
-    },
-    async pagSimulaADMGet(req, res){
-        res.render('../views/pagina-simula-adm');
-    },
     async pagEsqueci(req, res){
         res.render('../views/pagina-esqueci')
     },
@@ -54,7 +48,7 @@ module.exports = {
             Foto: dados.foto
         });
         // Redirecionar para a página principal
-        res.redirect('/');
+        res.redirect('/pagina-simulador');
     },
     
 }
