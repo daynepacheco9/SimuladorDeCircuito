@@ -49,7 +49,6 @@ module.exports = {
         try{
             const user = await usuario.findOne({where: { Email: email}});
 
-            console.log("FOIIII");
             if (!user) {
                 return "Usuário não encontrado";
             }
@@ -63,6 +62,5 @@ module.exports = {
         catch(error){
             console.error("Erro ao atualizar a senha!", error);
         }
-        console.log("AAAAAAAAAAAAAAAA");
     }
 }
