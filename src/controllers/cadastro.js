@@ -54,13 +54,11 @@ module.exports = {
 
         try{
             const user = await usuario.findOne({where: { Email: email}});
-            console.log(user);
             if (!user) {
                 return "Usuário não encontrado";
             }
 
             if (senha == csenha) {
-                console.log("senha igual");
                 user.Senha = senha;
 
                 await user.save();
@@ -68,7 +66,6 @@ module.exports = {
                 
             }
             else{
-                console.log("senha !+");
                 res.redirect('/pagina-esqueci');
             }
         }
@@ -78,7 +75,6 @@ module.exports = {
     },
 
     async usuariologin(req, res) {
-        console.log('entrou');
         const dados = req.body;
         const email = dados.email;
         const senha = dados.senha;
@@ -86,7 +82,6 @@ module.exports = {
         try {
             // Verificar se o usuário com o e-mail fornecido existe no banco de dados
             const user = await usuario.findOne({ where: { Email: email } });
-            console.log(email,senha,user);
 
             if (!user) {
                 return res.redirect('/pagina-login');
@@ -96,7 +91,6 @@ module.exports = {
             if (user.Senha != senha) {
                 alert('Senha errada')
             }
-            console.log('verificou');
 
             if (user.Acesso == 1){
                 res.redirect('/pagina-simula-adm');
@@ -112,7 +106,6 @@ module.exports = {
     {
         const dados= req.body;
         const email = dados.email;   
-        console.log(dados);
         try {
             // Encontrar o usuário pelo e-mail
             const user = await usuario.findOne({ where: { Email: email } });
