@@ -10,18 +10,19 @@ module.exports = {
         res.render('../views/pagina-excluir-user')
     },
     async usuarioInsert(req, res){
-        // Recebe as informações do front-end
         const dados = req.body;
-        // Criando sala no banco de dados
-        await usuario.create({
-            Nome: dados.nome,
-            Email: dados.email,
-            Telefone: dados.telefone,
-            Acesso: dados.acesso,
-            Senha: dados.senha
-        });
-        // Redirecionar para a página principal
-        res.redirect('/pagina-login');
+        const senha = dados.senha;
+        const csenha = dados.csenha;
+        if (senha == csenha) {
+            await usuario.create({
+                Nome: dados.nome,
+                Email: dados.email,
+                Telefone: dados.telefone,
+                Acesso: dados.acesso,
+                Senha: dados.senha
+            });    
+            res.redirect('/pagina-login');
+        }   
     },
 
     async componenteInsert(req, res){
@@ -76,11 +77,9 @@ module.exports = {
         try {
             // Encontrar o usuário pelo e-mail
             const user = await usuario.findOne({ where: { Email: email } });
-            console.log("foi");
             if (!user) {
                 return res.status(404).send("Usuário não encontrado");
             }
-            console.log("passou");
             // Excluir o usuário
             await user.destroy();
 
