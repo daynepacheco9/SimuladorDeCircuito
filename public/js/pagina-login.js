@@ -10,7 +10,7 @@ const form = document.querySelector('form');
 form.addEventListener('submit', function(event){
   event.preventDefault();
 
-  const username = form.querySelector('input[name="username"]').value;
+  const username = form.querySelector('input[name="email"]').value;
   const senha = form.querySelector('input[name="senha"]').value;
 
 })

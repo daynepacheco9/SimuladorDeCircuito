@@ -87,7 +87,7 @@ module.exports = {
         } catch (error) {
             console.error("Erro ao excluir o usuário:", error);
             res.status(500).send("Erro ao excluir o usuário");
-        }
+        }        
     },
 
     async componente(req, res){
