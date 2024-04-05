@@ -49,19 +49,28 @@ module.exports = {
     {
         const dados = req.body;
         const email = dados.email;
+        const senha = dados.senha;
+        const csenha = dados.csenha;
 
         try{
             const user = await usuario.findOne({where: { Email: email}});
-
+            console.log(user);
             if (!user) {
                 return "Usuário não encontrado";
             }
 
-            user.Senha = dados.senha;
+            if (senha == csenha) {
+                console.log("senha igual");
+                user.Senha = senha;
 
-            await user.save();
-
-            res.redirect('/pagina-login');
+                await user.save();
+                res.redirect('/pagina-login');
+                
+            }
+            else{
+                console.log("senha !+");
+                res.redirect('/pagina-esqueci');
+            }
         }
         catch(error){
             console.error("Erro ao atualizar a senha!", error);
@@ -80,13 +89,12 @@ module.exports = {
             console.log(email,senha,user);
 
             if (!user) {
-                return res.status(404).send("Usuário não encontrado");
-
+                return res.redirect('/pagina-login');
             }
 
             // Verificar se a senha fornecida corresponde à senha armazenada no banco de dados
             if (user.Senha != senha) {
-                return res.status(401).send("Senha incorreta");
+                alert('Senha errada')
             }
             console.log('verificou');
 
