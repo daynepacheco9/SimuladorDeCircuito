@@ -21,3 +21,10 @@ modeToggle.addEventListener('click', function() {
     modeToggle.src = modeToggle.src.includes("sol") ? luaPath : solPath
     logo.src = logo.src.includes("escuro") ? logo_clara : logo_esc
   });
+
+document.addEventListener("DOMContentLoaded", function(){
+  document.getElementById("form").addEventListener("submit", function(event){
+    const email = form.querySelector('input[name="email"]').value;
+    const senha = form.querySelector('input[name="senha"]').value;
+  });
+});
