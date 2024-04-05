@@ -112,7 +112,7 @@ a {
 }
 
 .circuito{
-    background-color: var(--grey-2);
+    background-color: var(--grey-3);
     width: 90%;
     overflow: hidden;
 }

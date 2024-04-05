@@ -10,26 +10,38 @@ canvas.width = displayWidth * scale;
 canvas.height = displayHeight * scale;
 let ctx = canvas.getContext("2d");
 
-let drawing = false;
-let mousePos = { x:0, y:0 };
-let lastPos = mousePos;
-canvas.addEventListener("mousemove", function (e) {
-  mousePos = getMousePos(canvas, e);
-  drawing = true;
-}, false);
 
-canvas.addEventListener("mouseup", function (e) {
-  drawing = false;
-}, false);
+let startX , startY;
+let endX, endY;
+let isDrawing = false;
 
-// Get the position of the mouse relative to the canvas
-function getMousePos(canvasDom, mouseEvent) {
-  let rect = canvasDom.getBoundingClientRect();
-  return {
-    x: (mouseEvent.clientX - rect.left) * scale,
-    y: (mouseEvent.clientY - rect.top) * scale
-  };
-}
+
+canvas.addEventListener('mousedown', function (e) {
+  if (!isDrawing) {
+      startX = (e.clientX - canvas.getBoundingClientRect().left) * scale;
+      startY = (e.clientY - canvas.getBoundingClientRect().top) * scale;
+      isDrawing = true;
+  } else {
+      endX = (e.clientX - canvas.getBoundingClientRect().left) * scale;
+      endY = (e.clientY - canvas.getBoundingClientRect().top) * scale;
+      isDrawing = false;
+
+      // Desenha a linha
+      drawLine(startX, startY, endX, endY);
+  }
+});
+
+function drawLine(startX, startY, endX, endY) {
+  ctx.strokeStyle = "#000000"; // Cor da linha
+  ctx.lineWidth   = 5; // Largura da linha
+  ctx.lineCap = "round";
+  ctx.beginPath();
+  ctx.moveTo(startX, startY);
+  ctx.lineTo(endX, endY);
+  ctx.stroke();
+};
+
+
 
 // Get a regular interval for drawing to the screen
 window.requestAnimFrame = (function (callback) {
@@ -43,27 +55,7 @@ window.requestAnimFrame = (function (callback) {
   };
 })();
 
-// Draw to the canvas
-function renderCanvas() {
-  if (drawing) {
-    ctx.strokeStyle = "#000000"; // Cor da linha
-    ctx.lineWidth   = 5; // Largura da linha
-    ctx.lineCap = "round"; // Estilo das extremidades da linha
-    ctx.beginPath();
-    ctx.moveTo(lastPos.x, lastPos.y); // Move para a última posição do mouse
-    ctx.lineTo(mousePos.x, mousePos.y); // Desenha uma linha até a posição atual do mouse
-    ctx.stroke(); // Aplica o desenho
-    
-    lastPos = mousePos; // Atualiza a última posição do mouse
-  }
-}
 
-// Allow for animation
-(function drawLoop () {
-  requestAnimFrame(drawLoop);
-  renderCanvas();
-  
-})();  
 
 // DRAG AND DROP
 document.addEventListener('DOMContentLoaded', function () {
@@ -80,8 +72,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // Manipulador de eventos para soltar o item no canvas
   canvas.addEventListener('drop', event => {
       event.preventDefault();
-      const x = event.clientX - canvas.offsetLeft;
-      const y = event.clientY - canvas.offsetTop;
+      const x = (event.clientX - canvas.getBoundingClientRect().left) * scale;
+    const y = (event.clientY - canvas.getBoundingClientRect().top) * scale;
 
       const imgSrc = event.dataTransfer.getData('text/plain');
       const img = new Image();
@@ -95,11 +87,6 @@ document.addEventListener('DOMContentLoaded', function () {
       event.preventDefault();
   });
 });
-
-
-
-
-
 
 
 
