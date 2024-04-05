@@ -1,9 +1,9 @@
-
+// CANVAS
 
 let displayWidth = 1280;
 let displayHeight = 720;
 let canvas = document.getElementById("canvas");
-let scale = 2;
+let scale = 3;
 canvas.style.width = displayWidth + 'px';
 canvas.style.height = displayHeight + 'px';
 canvas.width = displayWidth * scale;
@@ -65,6 +65,45 @@ function renderCanvas() {
   
 })();  
 
+// DRAG AND DROP
+document.addEventListener('DOMContentLoaded', function () {
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+
+  // Manipulador de eventos para iniciar o arrasto
+  document.querySelectorAll('.card-img-top').forEach(item => {
+      item.addEventListener('dragstart', event => {
+          event.dataTransfer.setData('text/plain', event.target.dataset.src);
+      });
+  });
+
+  // Manipulador de eventos para soltar o item no canvas
+  canvas.addEventListener('drop', event => {
+      event.preventDefault();
+      const x = event.clientX - canvas.offsetLeft;
+      const y = event.clientY - canvas.offsetTop;
+
+      const imgSrc = event.dataTransfer.getData('text/plain');
+      const img = new Image();
+      img.onload = function () {
+          ctx.drawImage(img, x, y, 250, 250); // Defina o tamanho desejado da imagem
+      };
+      img.src = imgSrc;
+  });
+
+  canvas.addEventListener('dragover', event => {
+      event.preventDefault();
+  });
+});
+
+
+
+
+
+
+
+
+// DARK MODE
 const modeToggle = document.getElementById('change-mode');
 const logo = document.getElementById('logo');
 const solPath = "img/icons8-sol-50.png"
