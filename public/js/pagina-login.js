@@ -15,6 +15,5 @@ document.addEventListener("DOMContentLoaded", function(){
   document.getElementById("form").addEventListener("submit", function(event){
     const email = form.querySelector('input[name="email"]').value;
     const senha = form.querySelector('input[name="senha"]').value;
-    event.preventDefault();
   });
 });
