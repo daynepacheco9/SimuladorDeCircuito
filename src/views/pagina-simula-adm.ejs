@@ -45,10 +45,10 @@
                 <ul>
                     <% for (let i = 0; i < componentes.length; i++) { %>
                         <li>
-                            <img src="img/<%= componentes[i].Foto %>" class="card-img-top rounded-circle" draggable="true" data-src="img/<%= componentes[i].Foto %>" style="max-width: 80px; height: auto;" alt="componente">
-                            <%= componentes[i].Nome %>
-                            - <%= componentes[i].Valor %>
-                            <%= componentes[i].Medida %> 
+                            <img ondragend="listarComponentes()" src="img/<%= componentes[i].Foto %>" class="card-img-top rounded-circle" draggable="true" data-src="img/<%= componentes[i].Foto %>" style="max-width: 80px; height: auto;" alt="componente">
+                            <a id="nome<%=i%>"><%= componentes[i].Nome %></a>
+                            <a id="valor<%=i%>"><%= componentes[i].Valor %></a> 
+                            <a id="medida<%=i%>"><%= componentes[i].Medida %></a> 
                         </li>
                     <% } %>
                 </ul>
