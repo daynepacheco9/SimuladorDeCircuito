@@ -15,7 +15,7 @@ class Componente {
 let displayWidth = 1280;
 let displayHeight = 720;
 const canvas = document.getElementById("canvas");
-const scale = 3;
+const scale = 1;
 let qtdComp = 0;
 canvas.style.width = displayWidth + 'px';
 canvas.style.height = displayHeight + 'px';
@@ -157,8 +157,8 @@ function listarComponentes(index) {
     const img = new Image();
     img.onload = function () {
       ctx.drawImage(img, 
-        x / scale + canvas.getBoundingClientRect().left, 
-        y / scale + canvas.getBoundingClientRect().top,
+        x, 
+        y,
         widthImage, heightImage
       );
    };
