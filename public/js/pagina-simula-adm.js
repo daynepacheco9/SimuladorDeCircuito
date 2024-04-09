@@ -1,18 +1,36 @@
 // CANVAS
 
+class Componente {
+  constructor(nome, valor, medida, x, y, width, height) {
+      this.nome = nome;
+      this.valor = valor;
+      this.medida = medida;
+      this.x = x;
+      this.y = y;
+      this.width = width;
+      this.height = height;
+  }
+}
+
 let displayWidth = 1280;
 let displayHeight = 720;
-let canvas = document.getElementById("canvas");
-let scale = 3;
+const canvas = document.getElementById("canvas");
+const scale = 3;
+let qtdComp = 0;
 canvas.style.width = displayWidth + 'px';
 canvas.style.height = displayHeight + 'px';
 canvas.width = displayWidth * scale;
 canvas.height = displayHeight * scale;
-let ctx = canvas.getContext("2d");
+const ctx = canvas.getContext("2d");
 
 let startX, startY;
+let x = [];
+let y = [];
 let endX, endY;
 let isDrawing = false;
+const widthImage = 250;
+const heightImage = 250;
+let imgSrc;
 
 
 canvas.addEventListener('mousedown', function (e) {
@@ -26,8 +44,8 @@ canvas.addEventListener('mousedown', function (e) {
     isDrawing = false;
 
     // Desenha a linha
-    conexoes.push({ startX, startY });
     drawLine(startX, startY, endX, endY);
+
   }
 });
 
@@ -43,32 +61,36 @@ function drawLine(startX, startY, endX, endY) {
 
 function listarComponentes() {
   let comp = [];
-  let valor = [];
-  
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < qtdComp; i++) {
     // Concatenando 'i' ao ID do elemento para acessá-lo dinamicamente
     let nomeElement = document.getElementById('nome' + i);
     let valorElement = document.getElementById('valor' + i);
+    let medidaElement = document.getElementById('medida' + i);
 
     // Verificando se os elementos foram encontrados
     if (nomeElement && valorElement) {
       // Armazenando os valores de texto desses elementos em arrays
-      comp.push(nomeElement.innerText.trim());
-      valor.push(valorElement.innerText.trim());
+      let nome = nomeElement.innerText.trim();
+      let valor = valorElement.innerText.trim();
+      let medida = medidaElement.innerText.trim();
+
+
+      let componente = new Componente(nome, valor, medida, x[i], y[i], widthImage, heightImage);
+      comp.push(componente);
     }
   }
-  
-  for (let index = 0; index < comp.length; index++) {
-    if ((comp[index] == 'resistor' && comp[index+1] == 'Diodo') || (comp[index+1] == 'resistor' && comp[index] == 'Diodo')) {
-      for (let j = 0; j < comp.length; j++) {
-        if (comp[j] == 'Diodo') {
-          const tensaoR = valor[j];
-          console.log(tensaoR);   
-        } 
-      } 
-    } 
-  }
+
+  // for (let index = 0; index < comp.length; index++) {
+  //   if ((comp[index] == 'resistor' && comp[index+1] == 'Diodo') || (comp[index+1] == 'resistor' && comp[index] == 'Diodo')) {
+  //     for (let j = 0; j < comp.length; j++) {
+  //       if (comp[j] == 'Diodo') {
+  //         const tensaoR = valor[j];
+  //         console.log(tensaoR);   
+  //       } 
+  //     } 
+  //   } 
+  // }
 }
 
 // Get a regular interval for drawing to the screen
@@ -87,35 +109,36 @@ window.requestAnimFrame = (function (callback) {
 
 // DRAG AND DROP
 document.addEventListener('DOMContentLoaded', function () {
-  const canvas = document.getElementById('canvas');
-  const ctx = canvas.getContext('2d');
+
 
   // Manipulador de eventos para iniciar o arrasto
   document.querySelectorAll('.card-img-top').forEach(item => {
     item.addEventListener('dragstart', event => {
-      event.dataTransfer.setData('text/plain', event.target.dataset.src);
+      imgSrc = event.target.dataset.src;
     });
   });
 
   // Manipulador de eventos para soltar o item no canvas
   canvas.addEventListener('drop', event => {
     event.preventDefault();
-    const x = (event.clientX - canvas.getBoundingClientRect().left) * scale;
-    const y = (event.clientY - canvas.getBoundingClientRect().top) * scale;
+    const xCoord = (event.clientX - canvas.getBoundingClientRect().left) * scale;
+    const yCoord = (event.clientY - canvas.getBoundingClientRect().top) * scale;
+    x.push(xCoord);
+    y.push(yCoord);
 
-    const imgSrc = event.dataTransfer.getData('text/plain');
     const img = new Image();
     img.onload = function () {
-      ctx.drawImage(img, x, y, 250, 250); // Defina o tamanho desejado da imagem
+      ctx.drawImage(img, xCoord, yCoord, widthImage, heightImage); // Defina o tamanho desejado da imagem
     };
-    img.src = imgSrc;
-  });
 
+    console.log(x[qtdComp], y[qtdComp]);
+    img.src = imgSrc;
+    qtdComp++;
+  });
   canvas.addEventListener('dragover', event => {
     event.preventDefault();
   });
 });
-
 
 
 // DARK MODE
