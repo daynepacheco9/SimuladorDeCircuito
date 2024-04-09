@@ -10,10 +10,12 @@ canvas.width = displayWidth * scale;
 canvas.height = displayHeight * scale;
 let ctx = canvas.getContext("2d");
 
+let lastClickedImage = null;
 
 let startX , startY;
 let endX, endY;
 let isDrawing = false;
+
 
 
 canvas.addEventListener('mousedown', function (e) {
@@ -56,14 +58,14 @@ window.requestAnimFrame = (function (callback) {
 })();
 
 
-
 // DRAG AND DROP
 document.addEventListener('DOMContentLoaded', function () {
+  const componentesDiv = document.querySelector('.componentes');
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
 
   // Manipulador de eventos para iniciar o arrasto
-  document.querySelectorAll('.card-img-top').forEach(item => {
+  componentesDiv.querySelectorAll('.card-img-top').forEach(item => {
       item.addEventListener('dragstart', event => {
           event.dataTransfer.setData('text/plain', event.target.dataset.src);
       });
@@ -71,16 +73,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Manipulador de eventos para soltar o item no canvas
   canvas.addEventListener('drop', event => {
-      event.preventDefault();
-      const x = (event.clientX - canvas.getBoundingClientRect().left) * scale;
-    const y = (event.clientY - canvas.getBoundingClientRect().top) * scale;
-
-      const imgSrc = event.dataTransfer.getData('text/plain');
-      const img = new Image();
-      img.onload = function () {
-          ctx.drawImage(img, x, y, 250, 250); // Defina o tamanho desejado da imagem
-      };
-      img.src = imgSrc;
+    event.preventDefault();
+     const x = (event.clientX - canvas.getBoundingClientRect().left) * scale;
+     const y = (event.clientY - canvas.getBoundingClientRect().top) * scale;
+    const imgSrc = event.dataTransfer.getData('text/plain');
+    const img = new Image();
+    img.onload = function () {
+        ctx.drawImage(img, x, y, 250, 250); // Defina o tamanho desejado da imagem
+        lastClickedImage = img;
+    };
+    img.src = imgSrc;
   });
 
   canvas.addEventListener('dragover', event => {
@@ -89,6 +91,18 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+//ROTATE
+function rotateLastImage() {
+  if (lastClickedImage) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.save();
+    ctx.translate(lastClickedImagePositionX + lastClickedImage.width / 2, lastClickedImagePositionY + lastClickedImage.height / 2);
+    ctx.rotate(Math.PI / 2); // Girar 90 graus no sentido anti-horário
+    ctx.scale(lastClickedImageScaleX, lastClickedImageScaleY);
+    ctx.drawImage(lastClickedImage, -lastClickedImage.width / 2, -lastClickedImage.height / 2, lastClickedImage.width, lastClickedImage.height);
+    ctx.restore();
+  }
+}
 
 // DARK MODE
 const modeToggle = document.getElementById('change-mode');
