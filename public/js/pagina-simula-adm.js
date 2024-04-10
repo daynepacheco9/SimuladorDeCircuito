@@ -1,7 +1,7 @@
 // CANVAS
 
 class Componente {
-  constructor(nome, valor, medida, x, y, width, height) {
+  constructor(nome, valor, medida, x, y, width, height, porta1, porta2) {
     this.nome = nome;
     this.valor = valor;
     this.medida = medida;
@@ -9,13 +9,29 @@ class Componente {
     this.y = y;
     this.width = width;
     this.height = height;
+    this.porta1 = porta1;
+    this.porta2 = porta2;
   }
+
+  left = []
+  right = []
+
+  connectLeft(component)
+  {
+    this.left.push(component)
+  }
+
+  connectRight(component)
+  {
+    this.right.push(component)
+  }
+
 }
 
 let displayWidth = 1280;
 let displayHeight = 720;
 const canvas = document.getElementById("canvas");
-const scale = 1;
+const scale = 3;
 let qtdComp = 0;
 canvas.style.width = displayWidth + 'px';
 canvas.style.height = displayHeight + 'px';
@@ -33,18 +49,21 @@ let ident2;
 let porta1;
 let porta2;
 let endX, endY;
+let tensao1 = 0;
 let isDrawing = false;
 const widthImage = 250;
 const heightImage = 250;
 let imgSrc;
 let comp = [];
 
+canvas.addEventListener('dragover', function (e) {
+  x = (e.clientX - canvas.getBoundingClientRect().left) * scale;
+  y = (e.clientY - canvas.getBoundingClientRect().top) * scale;
+})
+
 canvas.addEventListener('mousemove', function (e) {
   x = (e.clientX - canvas.getBoundingClientRect().left) * scale;
   y = (e.clientY - canvas.getBoundingClientRect().top) * scale;
-
-  console.log(x)
-  console.log(y)
 })
 
 canvas.addEventListener('mousedown', function (e) {
@@ -58,7 +77,11 @@ canvas.addEventListener('mousedown', function (e) {
     isDrawing = false;
 
     let obj = verificarConexao(startX, startY, endX, endY)
-    console.log(obj)
+    startX = -1
+    startY = -1
+    endX = -1
+    endY = -1
+
     if (obj == null)
       return
     
@@ -73,14 +96,13 @@ canvas.addEventListener('mousedown', function (e) {
 function inBox(x, y, rectX, rectY, rectWidth, rectHeight)
 {
   return x > rectX && x < rectX + rectWidth
-    && y > rectY && rectY < rectY + rectHeight
+    && y > rectY && y < rectY + rectHeight
 }
 
 function verificarConexao(startX, startY, endX, endY) {
   let result = false;
   let connectionData = { }
   
-  console.log(comp.length)
   for (let i = 0; i < comp.length; i++)
   {
     if (!inBox(startX, startY, comp[i].x, comp[i].y, widthImage, heightImage))
@@ -93,6 +115,7 @@ function verificarConexao(startX, startY, endX, endY) {
       widthImage / 2, heightImage
     )
     connectionData['comp1'] = i
+    calcularCorrente();
     break;
   }
 
@@ -121,7 +144,19 @@ function verificarConexao(startX, startY, endX, endY) {
   if (!result)
     return null
 
-  return connectionData
+  if (connectionData['porta1'])
+    comp[connectionData['comp1']].connectRight(comp[connectionData['comp2']])
+  else
+    comp[connectionData['comp1']].connectLeft(comp[connectionData['comp2']])
+  
+  if (connectionData['porta2'])
+    comp[connectionData['comp2']].connectRight(comp[connectionData['comp1']])
+  else
+    comp[connectionData['comp2']].connectLeft(comp[connectionData['comp1']])
+
+  validarConexoes();
+  
+  return connectionData;
 }
 
 function drawLine(startX, startY, endX, endY) {
@@ -133,6 +168,23 @@ function drawLine(startX, startY, endX, endY) {
   ctx.lineTo(endX, endY);
   ctx.stroke();
 };
+
+function validarConexoes() {
+  let validar;
+  for (let i = 0; i < comp.length; i++) {
+    if ((comp[i].left.length == 1) && (comp[i].right.length == 1)) {
+      validar = true;
+    }
+    else if (comp[i].left.length > 1 && comp[i].right.length > 1) {
+      validar = false;
+    }
+  }
+
+  if (!validar)
+    return null;
+
+  calcularCorrente();
+}
 
 function listarComponentes(index) {
 
@@ -147,13 +199,12 @@ function listarComponentes(index) {
     let valor = valorElement.innerText.trim();
     let medida = medidaElement.innerText.trim();
 
-
     let componente = new Componente(
       nome, valor, medida, 
       x, y, widthImage, heightImage
     );
+    
     comp.push(componente);
-
     const img = new Image();
     img.onload = function () {
       ctx.drawImage(img, 
@@ -165,16 +216,35 @@ function listarComponentes(index) {
    img.src = imgSrc;
   }
 
-  // for (let index = 0; index < comp.length; index++) {
-  //   if ((comp[index] == 'resistor' && comp[index+1] == 'Diodo') || (comp[index+1] == 'resistor' && comp[index] == 'Diodo')) {
-  //     for (let j = 0; j < comp.length; j++) {
-  //       if (comp[j] == 'Diodo') {
-  //         const tensaoR = valor[j];
-  //         console.log(tensaoR);   
-  //       } 
-  //     } 
-  //   } 
-  // }
+}
+
+function calcularCorrente() {
+  let tensao = 0;
+  let corrente = 0; 
+  let resistor = 0;
+  for (let i = 0; i < comp.length; i++) {
+    if (comp[i].nome == "fonte") {
+      tensao += parseFloat(comp[i].valor);
+      console.log(tensao);
+    }
+    if (comp[i].nome == "resistor") {
+      resistor += parseFloat(comp[i].valor);
+    }
+  }
+  corrente = tensao/resistor;
+  calcularTensao(corrente);
+}
+
+function calcularTensao(corrente) {
+  for (let i = 0; i < comp.length; i++) {
+    if (comp[i].nome == "resistor") {
+      tensao1 = corrente * parseFloat(comp[i].valor);
+      ctx.font = "60px serif";
+      ctx.fillText("Componente: " + comp[i].nome, 3300, 1900);
+      ctx.fillText("Tensão: " + tensao1 + "V", 3300, 2000);
+      ctx.fillText("Corrente: " + corrente + "A", 3300, 2100);
+    }
+  }
 }
 
 // Get a regular interval for drawing to the screen
