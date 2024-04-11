@@ -152,15 +152,33 @@ a {
     background-color: var(--grey-4);
 } 
 
-@media screen and (min-width: 320px){
+@media screen and (min-width: 320px) and (max-width: 700px){
     .titulo{
         display: none;
     }
 
     .topo{
         background-color: #EEA503;
-        font-size: 10px;
+        font-size: 15px;
     }
+    .simulacao{
+        flex-direction: column;
+    }
+    .componentes{
+        display: flex;
+       
+        width: 100%;
+    }
+    .componentes ul{
+        width: 100%;
+        flex-direction: row;
+        gap: 5px;
+    }
+    .circuito
+    {
+        width: auto;
+    }
+    
 }
 @media screen and (min-width: 470px){
     .titulo{
