@@ -32,7 +32,6 @@ let displayWidth = 1280;
 let displayHeight = 720;
 const canvas = document.getElementById("canvas");
 const scale = 3;
-let qtdComp = 0;
 canvas.style.width = displayWidth + 'px';
 canvas.style.height = displayHeight + 'px';
 canvas.width = displayWidth * scale;
@@ -137,9 +136,6 @@ function verificarConexao(startX, startY, endX, endY) {
       comp[i].x, comp[i].y, 
       widthImage / 2, heightImage
     )
-
-
-    
     connectionData['comp2'] = i
     break;
   }
