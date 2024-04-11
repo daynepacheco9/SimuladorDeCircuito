@@ -16,17 +16,6 @@
     --grey-3:#969090;
     --grey-4: #D9D9D9;
 }
- 
-.opcao{
-    color: var(--grey-0);
-}
-
-.nomes {
-    color: var(--grey-1);
-    font-size: var(--bs-navbar-brand-font-size);
-}
-
-
 *{
     margin: 0;
     padding: 0;
@@ -35,11 +24,28 @@
 }
 html{
     height: 100%;
-    /* background-color: #f2f2f2; */
+    background-color: var(--grey-2);
 }
 .topo{
     background-color: #EEA503;
 }
+.nomes {
+    color: var(--grey-1);
+    font-size: var(--bs-navbar-brand-font-size);
+}
+
+.logo {
+    width: 55px;
+    height: 55px;
+}
+.titulo{
+    color: var(--grey-0);
+    font-size: 30px;
+}
+.opcao{
+    color: var(--grey-0);
+}
+
 header{
     height: 10vh;
 }
@@ -55,10 +61,6 @@ main{
     flex-direction: column;
     position: relative;
 
-}
-.titulo{
-    color: var(--grey-0);
-    font-size: 30px;
 }
 main > div {
     width: 350px;
@@ -85,10 +87,7 @@ main > div {
 a {
     text-decoration: none;
 }
-.logo {
-    width: 55px;
-    height: 55px;
-}
+
 .cadastrar{
     background-color: #EEA503;
     border: none;
@@ -129,4 +128,52 @@ footer{
 }
 .imagem-componente input{
     display: none;
+}
+@media screen and (min-width: 320px){
+    .titulo{
+        display: none;
+    }
+
+    .topo{
+        background-color: #EEA503;
+        font-size: 10px;
+    }
+    .formulario{
+        width: 60vw;
+    }
+    
+}
+@media screen and (min-width: 470px){
+    .titulo{
+        display: flex;
+    }
+
+    .topo{
+        background-color: #EEA503;
+        font-size: 15px;
+    }
+    .formulario{
+        width: 60vw;
+    }
+    
+}
+
+@media screen and (min-width: 700px){
+    .titulo{
+        display: flex;
+    }
+
+    .topo{
+        background-color: #EEA503;
+        font-size: 15px;
+    }
+    .formulario{
+        width: 50vw;
+    }
+}
+
+@media screen and (min-width: 800px){
+    .formulario{
+        max-width: 400px;
+    }
 }

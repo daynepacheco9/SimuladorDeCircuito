@@ -16,7 +16,7 @@
 
 <body>
     <header>
-        <div class=" topo d-flex flex-column flex-md-row align-items-center md-5 px-md-4 border-bottom shadow">
+        <div class=" topo d-flex flex-md-row align-items-center md-5 p-3 px-md-4 border-bottom shadow">
             <div class="nome d-flex flex-row align-items-center justify-content-between">
                 <img id="logo" class="logo" src="img/Logo-claro.svg" alt="" draggable="false"/>
                 <a href="/">
@@ -40,19 +40,28 @@
         <div class="simulacao d-flex justify-content-between-center w-100 m-0 p-0">
             <div class="componentes ">
                 <ul>
-                    <% for (let i = 0; i < componentes.length; i++) { %>
+                    <% for (let i=0; i < componentes.length; i++) { %>
                         <li>
-                            <img ondragend="listarComponentes(<%=i%>)" src="img/<%= componentes[i].Foto %>" class="card-img-top rounded-circle" draggable="true" data-src="img/<%= componentes[i].Foto %>" style="max-width: 80px; height: auto;" alt="componente">
-                            <a id="nome<%=i%>"><%= componentes[i].Nome %></a>
-                            <a id="valor<%=i%>"><%= componentes[i].Valor %></a> 
-                            <a id="medida<%=i%>"><%= componentes[i].Medida %></a> 
+                            <img ondragend="listarComponentes(<%=i%>)" src="img/<%= componentes[i].Foto %>"
+                                class="card-img-top rounded-circle" draggable="true"
+                                data-src="img/<%= componentes[i].Foto %>" style="max-width: 80px; height: auto;"
+                                alt="componente">
+                            <a id="nome<%=i%>">
+                                <%= componentes[i].Nome %>
+                            </a>
+                            <a id="valor<%=i%>">
+                                <%= componentes[i].Valor %>
+                            </a>
+                            <a id="medida<%=i%>">
+                                <%= componentes[i].Medida %>
+                            </a>
                         </li>
-                    <% } %>
+                        <% } %>
                 </ul>
             </div>
             <div class="circuito ">
                 <canvas class="canvas" id="canvas">
-                    
+
                 </canvas>
             </div>
         </div>

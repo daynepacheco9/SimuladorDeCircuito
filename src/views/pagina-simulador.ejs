@@ -16,12 +16,10 @@
 
 <body>
     <header>
-        <div class=" topo d-flex flex-column flex-md-row align-items-center md-5 px-md-4 border-bottom shadow">
+        <div class=" topo d-flex flex-md-row align-items-center md-2 p-3 px5 border-bottom shadow flex-wrap">
             <div class="nome d-flex flex-row align-items-center justify-content-between">
-                <img id="logo" class="logo" src="img/Logo-claro.svg" alt="" draggable="false">
-                <a href="/">
-                    <span class="titulo" style="font-weight: 500">ElectraVerse</span>
-                </a>
+                <a href="/"><img id="logo" class="logo" src="img/Logo-claro.svg" alt="" /></a>
+                <span class="titulo" style="font-weight: 500">ElectraVerse</span>
             </div>
             <nav class="my-2 my-md-9 mr-md-3 d-flex flex-row align-items-center justify-content-center">
             </nav>
@@ -30,30 +28,29 @@
     <main class="d-flex justify-content-center align-items-center m-0">
         <div class="funcoes d-flex justify-content-between-center w-100 m-0 p-0 col">
             <div class="rotate">
-                <img id="rotate-left" src="img/icons8-gire-para-a-esquerda-96.png" alt="" draggable="false">
-                <img id="rotate-right"src="img/icons8-gire-para-a-direita-96.png" alt="" draggable="false">
-                <img id="rotate-img" onclick="rotacaoUltimaImg()" src="img/giro.png" alt="" draggable="false">
             </div>
             <div class="troca-cor">
-                <img id="change-mode" src="img/icons8-lua-brilhante-96.png" alt=""draggable="false">
+                <img id="change-mode" src="img/icons8-lua-brilhante-96.png" alt="" draggable="false">
             </div>
         </div>
         <div class="simulacao d-flex justify-content-between-center w-100 m-0 p-0">
             <div class="componentes ">
                 <ul>
-                    <% for (let i = 0; i < componentes.length; i++) { %>
+                    <% for (let i=0; i < componentes.length; i++) { %>
                         <li>
-                            <img src="img/<%= componentes[i].Foto %>" class="card-img-top rounded-circle" draggable="true" data-src="img/<%= componentes[i].Foto %>" style="max-width: 80px; height: auto;" alt="componente">
+                            <img src="img/<%= componentes[i].Foto %>" class="card-img-top rounded-circle"
+                                draggable="true" data-src="img/<%= componentes[i].Foto %>"
+                                style="max-width: 80px; height: auto;" alt="componente">
                             <%= componentes[i].Nome %>
-                            - <%= componentes[i].Valor %>
-                            <%= componentes[i].Medida %> 
+                                - <%= componentes[i].Valor %>
+                                    <%= componentes[i].Medida %>
                         </li>
-                    <% } %>
+                        <% } %>
                 </ul>
             </div>
             <div class="circuito ">
                 <canvas class="canvas" id="canvas">
-                    
+
                 </canvas>
             </div>
         </div>
