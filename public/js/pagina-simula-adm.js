@@ -137,6 +137,9 @@ function verificarConexao(startX, startY, endX, endY) {
       comp[i].x, comp[i].y, 
       widthImage / 2, heightImage
     )
+
+
+    
     connectionData['comp2'] = i
     break;
   }
