@@ -224,7 +224,6 @@ function calcularCorrente() {
   for (let i = 0; i < comp.length; i++) {
     if (comp[i].nome == "fonte") {
       tensao += parseFloat(comp[i].valor);
-      console.log(tensao);
     }
     if (comp[i].nome == "resistor") {
       resistor += parseFloat(comp[i].valor);
@@ -235,15 +234,17 @@ function calcularCorrente() {
 }
 
 function calcularTensao(corrente) {
+  let volt = 0;
+  corrente = corrente.toExponential(3);
   for (let i = 0; i < comp.length; i++) {
     if (comp[i].nome == "resistor") {
-      tensao1 = corrente * parseFloat(comp[i].valor);
+      tensao1 = corrente * parseInt(comp[i].valor);
       ctx.font = "60px serif";
-      ctx.fillText("Componente: " + comp[i].nome, 3300, 1900);
-      ctx.fillText("Tensão: " + tensao1 + "V", 3300, 2000);
-      ctx.fillText("Corrente: " + corrente + "A", 3300, 2100);
+      volt += tensao1;
+      ctx.fillText("Corrente total: " + corrente + "A", 3200, 2100);
     }
   }
+  ctx.fillText("Tensão total: " + volt + "V", 3200, 2000);
 }
 
 // Get a regular interval for drawing to the screen
