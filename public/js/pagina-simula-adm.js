@@ -241,9 +241,10 @@ function calcularTensao(corrente) {
       tensao1 = corrente * parseInt(comp[i].valor);
       ctx.font = "60px serif";
       volt += tensao1;
-      ctx.fillText("Corrente total: " + corrente + "A", 3200, 2100);
     }
   }
+  volt = volt.toFixed(2);
+  ctx.fillText("Corrente total: " + corrente + "A", 3200, 2100);
   ctx.fillText("Tensão total: " + volt + "V", 3200, 2000);
 }
 
