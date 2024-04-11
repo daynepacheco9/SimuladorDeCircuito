@@ -124,21 +124,14 @@ module.exports = {
 
     async componente(req, res){
         // Encontrando todas as salas disponíveis no SQL
-        try {
             // Encontrando todos os componentes disponíveis no banco de dados
             const componentes = await componente.findAll({
                 raw: true, // Retorna somente os valores de uma tabela, sem os metadados.
                 attributes: ['IDComp', 'Nome', 'Valor', 'Medida', 'Foto']
             });
             
-            // Renderizando a página com os componentes
             res.render('../views/pagina-simulador', { componentes });
-        } catch (error) {
-            console.error("Erro ao buscar componentes:", error);
-            // Tratar o erro adequadamente
-            res.status(500).send('Erro ao buscar componentes.');
-        }
-    },
+        },
 
     async componente_adm(req, res){
         // Encontrando todas as salas disponíveis no SQL
